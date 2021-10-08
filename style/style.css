@@ -1,0 +1,168 @@
+:root {
+    --main-bg: #d15353;
+    --header-bg: #3B7080;
+    --cont-bg: #D6CFCB;
+}
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    min-width: 300px;
+    min-height: 600px;
+    margin: 0px;
+    background-color: var(--main-bg);
+}
+
+header {
+    width: 100%;
+    background-color: var(--header-bg);
+    height: 100px;
+    box-shadow: 0px 0px 15px black;
+}
+
+.form-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    background-color: var(--cont-bg);
+    box-shadow: 2px 2px 10px black;
+}
+
+form > fieldset {
+    display: grid;
+    border: 1px dotted #fff;
+    border-radius: 6px;
+    margin: 20px;
+}
+
+#help {
+    color: blue;
+    justify-self: flex-end;
+}
+
+#help-popup {
+    width: 100%;
+    display: none;
+    justify-content: center;
+    position: absolute;
+    left: 0px;
+}
+
+#help-popup iframe {
+    box-shadow: 2px 2px 25px black;
+}
+
+form .form-item {
+    margin: 10px 0px;
+}
+
+form .form-item > input {
+    padding: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+form .form-item > input:focus {
+    outline-style: none;
+    box-shadow: none;
+    border: 2px solid cornflowerblue;
+    border-radius: 5px;
+}
+
+form .form-item:not(#agree-cont) {
+    display: flex;
+    flex-direction: column;
+}
+
+form .form-item:not(#agree-cont) > label {
+    order: -1;
+    margin-bottom: 5px;
+}
+
+.form-item > input:required ~ label::after {
+    content: '*';
+    color: red;
+}
+
+
+
+@media screen and (min-width: 300px) and (max-width: 420px) {
+    .form-container {
+        margin: 20px 0px;
+    }
+
+    form > fieldset > legend {
+        font-size: 18px;
+    }
+
+    form .form-item:not(#agree-cont) > label {
+        display: none;
+    }
+    
+    #help-popup iframe {
+        width: 95vw;
+        height: 250px;
+    }
+
+    #pub-key-cont {
+        height: 0px;
+        margin: 0px;
+        padding: 0px;
+        overflow: hidden;
+        visibility: hidden;
+    }
+}
+
+@media screen and (min-width: 421px) and (max-width: 750px) {
+    .form-container {
+        margin: 30px 0px;
+    }
+
+    form {
+        border-radius: 10px;
+    }
+
+    form > fieldset > legend {
+        font-size: 18px;
+    }
+
+    #help-popup iframe {
+        width: 80%;
+        height: 250px;
+    }
+}
+
+@media screen and (min-width: 751px) {
+    .form-container {
+        margin: 60px 0px;
+    }
+
+    form {
+        padding: 20px;
+        box-sizing: border-box;
+        border-radius: 10px;
+    }
+    
+    form > fieldset {
+        width: 30rem;
+        padding: 20px 40px;
+        box-sizing: border-box;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+    form > fieldset > legend {
+        font-size: 22px;
+    }
+ 
+    #help-popup iframe {
+        width: 600px;
+        height: 350px;
+    }
+}
