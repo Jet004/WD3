@@ -1,4 +1,43 @@
 //--------------------------------------------------------------------------//
+// Form validation
+//--------------------------------------------------------------------------//
+
+// Custome validation messages for each input based on id
+const errorMessage = {
+    'fname': 'f',
+    'lname': 'l',
+    'email': 'e',
+    'password': 'p',
+    'confirm-password': 'cp',
+    'public-key': 'pk',
+    'agree': 'a'
+}
+
+// Prevent form submission
+function validateFormOnSubmit(e){
+    return false;
+}
+
+// Check input validity on input and show custom error message depending on
+// element id
+function validateOnFormInput(e){
+    // Capture the element which received input
+    const elem = e.target
+
+    console.log(elem.getAttribute('id'))
+    if(!elem.checkValidity()){
+        // Get parent node then build css query to select error div child
+        document.querySelector('#' + elem.parentNode.getAttribute('id') + '> .error').innerHTML = errorMessage[elem.getAttribute('id')] 
+        // elem.nextElementSibling.nextElementSibling.innerHTML = errorMessage[elem.getAttribute('id')]  
+    }
+}
+
+
+
+//--------------------------------------------------------------------------//
+
+
+//--------------------------------------------------------------------------//
 // SHOW/HIDE HELP POPUP
 //--------------------------------------------------------------------------//
 // Set behaviour for displaying and hiding help popup

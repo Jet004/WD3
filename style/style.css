@@ -35,6 +35,8 @@ form {
 
 form > fieldset {
     display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
     border: 1px dotted #fff;
     border-radius: 6px;
     margin: 20px;
@@ -68,13 +70,6 @@ form .form-item > input {
     border-radius: 5px;
 }
 
-form .form-item > input:focus {
-    outline-style: none;
-    box-shadow: none;
-    border: 2px solid cornflowerblue;
-    border-radius: 5px;
-}
-
 form .form-item:not(#agree-cont) {
     display: flex;
     flex-direction: column;
@@ -90,15 +85,47 @@ form .form-item:not(#agree-cont) > label {
     color: red;
 }
 
+/* CSS for handling form validation & user input */
 
+.error {
+    display: none;
+}
 
-@media screen and (min-width: 300px) and (max-width: 420px) {
+form .form-item > input:focus {
+    outline-style: none;
+    box-shadow: none;
+    border: 2px solid cornflowerblue;
+    border-radius: 5px;
+}
+
+form input:invalid:not(:placeholder-shown) {
+    text-decoration: underline rgb(255, 80, 80);
+}
+
+form input:invalid:not(:placeholder-shown) ~ .error {
+    display: block;
+}
+
+form input:valid:not(:placeholder-shown):not([type="submit"]) {
+    text-decoration: underline rgb(0, 175, 0);
+}
+
+/* Mobile specific CSS */
+@media screen and (min-width: 300px) and (max-width: 440px) {
     .form-container {
         margin: 20px 0px;
     }
 
+    form {
+        width: 100%;
+    }
+
     form > fieldset > legend {
         font-size: 18px;
+    }
+
+    form > fieldset input:not(#agree) {
+        width: 100%;
     }
 
     form .form-item:not(#agree-cont) > label {
@@ -117,15 +144,24 @@ form .form-item:not(#agree-cont) > label {
         overflow: hidden;
         visibility: hidden;
     }
+
+    .error {
+        width: 300px;
+    }
 }
 
-@media screen and (min-width: 421px) and (max-width: 750px) {
+/* Tablet specific CSS */
+@media screen and (min-width: 441px) and (max-width: 750px) {
     .form-container {
         margin: 30px 0px;
     }
 
     form {
         border-radius: 10px;
+    }
+
+    form > fieldset input:not(#agree) {
+        width: 400px;
     }
 
     form > fieldset > legend {
@@ -136,8 +172,13 @@ form .form-item:not(#agree-cont) > label {
         width: 80%;
         height: 250px;
     }
+
+    .error {
+        width: 395px;
+    }
 }
 
+/* Desktop specific CSS */
 @media screen and (min-width: 751px) {
     .form-container {
         margin: 60px 0px;
@@ -150,11 +191,12 @@ form .form-item:not(#agree-cont) > label {
     }
     
     form > fieldset {
-        width: 30rem;
         padding: 20px 40px;
         box-sizing: border-box;
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
+    }
+
+    form > fieldset input:not(#agree) {
+        width: 400px;
     }
 
     form > fieldset > legend {
@@ -164,5 +206,9 @@ form .form-item:not(#agree-cont) > label {
     #help-popup iframe {
         width: 600px;
         height: 350px;
+    }
+
+    .error {
+        width: 395px;
     }
 }
