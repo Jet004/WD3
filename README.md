@@ -1,5 +1,3 @@
 #WD3
 
-TODO
-
-SVG
+Please watch the help video. It's very helpful on a down day.
