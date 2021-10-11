@@ -1,75 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/style.css">
-    <script src="js/script.js" defer></script>
-    <title>Crypto Tax Manager</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style/style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <script src="js/script.js" defer></script>
+        <title>Crypto Tax Manager</title>
+    </head>
+    <body>
+        <header>
+            <div class="logo">Logo</div>
+            <div></div>
+        </header>
 
-    <header>
-        <div class="logo">Logo</div>
-        <div></div>
-    </header>
+        <div class="form-container">
+            <form
+                action="#"
+                method="POST"
+                oninput="validateOnFormInput(event)"
+                onsubmit="event.preventDefault(); validateFormOnSubmit(event)"
+            >
+                <fieldset>
+                    <legend>Register an Account</legend>
 
-    <div class="form-container">
-        <form action="#" method="POST" oninput="validateOnFormInput(event)" onsubmit="event.preventDefault(); validateFormOnSubmit(event)">
-            <fieldset>
-                <legend>Register an Account</legend>
+                    <a id="help">Help</a>
+                    <div id="help-popup">
+                        <iframe
+                            src="https://www.youtube.com/embed/mxzgwJ8tSE0"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                        ></iframe>
+                        <div class="error"></div>
+                    </div>
 
-                <a id="help">Help</a>
-                <div id="help-popup">
-                    <iframe src="https://www.youtube.com/embed/mxzgwJ8tSE0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <div class="error"></div>
-                </div>
+                    <div class="form-item" id="fname-cont">
+                        <input
+                            type="text"
+                            name="fname"
+                            id="fname"
+                            placeholder="First Name"
+                            maxlength="50"
+                            title="Please provide your capitalised first name"
+                            pattern="[A-Z][a-z]+"
+                            required
+                        />
+                        <label for="fname">First Name</label>
+                        <div class="error"></div>
+                    </div>
 
-                <div class="form-item" id="fname-cont">
-                    <input type="text" name="fname" id="fname" placeholder="First Name" maxlength="50" title="Please provide your capitalised first name" pattern="[A-Z][a-z]+" required>
-                    <label for="fname">First Name</label>
-                    <div class="error"></div>
-                </div>
+                    <div class="form-item" id="lname-cont">
+                        <input
+                            type="text"
+                            name="lname"
+                            id="lname"
+                            placeholder="Last Name"
+                            maxlength="50"
+                            title="Please provide your capitalised last name"
+                            pattern="[A-Z][a-z]+"
+                            required
+                        />
+                        <label for="lname">Last Name</label>
+                        <div class="error"></div>
+                    </div>
 
-                <div class="form-item" id="lname-cont">
-                    <input type="text" name="lname" id="lname" placeholder="Last Name" maxlength="50" title="Please provide your capitalised last name" pattern="[A-Z][a-z]+" required>
-                    <label for="lname">Last Name</label>
-                    <div class="error"></div>
-                </div>
+                    <div class="form-item" id="email-cont">
+                        <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            placeholder="Email"
+                            maxlength="100"
+                            title="Please input a valid email address"
+                            pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$"
+                            required
+                        />
+                        <label for="email">Email</label>
+                        <div class="error"></div>
+                    </div>
 
-                <div class="form-item" id="email-cont">
-                    <input type="email" name="email" id="email" placeholder="Email" maxlength="100" title="Please input a valid email address" pattern="^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$" required>
-                    <label for="email">Email</label>
-                    <div class="error"></div>
-                </div>
+                    <div class="form-item" id="password-cont">
+                        <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            placeholder="Password"
+                            maxlength="50"
+                            title="A password should contain: a capital letter, a lower case letter, a number, no spaces and be longer than 6 characters long"
+                            pattern="^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,50})\S$"
+                            required
+                        />
+                        <label for="password">Password</label>
+                        <div class="error"></div>
+                    </div>
 
-                <div class="form-item" id="password-cont">
-                    <input type="password" name="password" id="password" placeholder="Password" maxlength="50" title="A password should contain: a capital letter, a lower case letter, a number, no spaces and be longer than 6 characters long" pattern="^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,50})\S$" required>
-                    <label for="password">Password</label>
-                    <div class="error"></div>
-                </div>
+                    <div class="form-item" id="check-password-cont">
+                        <input
+                            type="password"
+                            name="confirm-password"
+                            id="confirm-password"
+                            placeholder="Confirm Password"
+                            maxlength="50"
+                            title="Must match the password typed above"
+                            pattern="^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,50})\S$"
+                            required
+                        />
+                        <label for="confirm-password">Confirm Password</label>
+                        <div class="error"></div>
+                    </div>
 
-                <div class="form-item" id="check-password-cont">
-                    <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password" maxlength="50" title="Must match the password typed above" pattern="^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,50})\S$" required>
-                    <label for="confirm-password">Confirm Password</label>
-                    <div class="error"></div>
-                </div>
+                    <div class="form-item" id="pub-key-cont">
+                        <input
+                            type="text"
+                            name="public-key"
+                            id="public-key"
+                            placeholder="Wallet Address"
+                            maxlength="200"
+                            title="Please enter a valid public key"
+                            pattern="[A-Za-z0-9_-]{10,200}"
+                        />
+                        <label for="public-key">Wallet Address</label>
+                        <div class="error"></div>
+                    </div>
 
-                <div class="form-item" id="pub-key-cont">
-                    <input type="text" name="public-key" id="public-key" placeholder="Wallet Address" maxlength="200" title="Enter your wallet's public address to enable automatic calculation" pattern="[A-Za-z0-9_-.]">
-                    <label for="public-key">Wallet Address</label>
-                    <div class="error"></div>
-                </div>
+                    <div class="form-item" id="agree-cont">
+                        <input
+                            type="checkbox"
+                            name="agree"
+                            id="agree"
+                            title="You must agree to the terms and conditions and the privacy policy to create an account"
+                            required
+                        />
+                        <label for="agree"
+                            >Agree to Terms and Conditions and Privacy
+                            Policy</label
+                        >
+                        <div class="error"></div>
+                    </div>
 
-                <div class="form-item" id="agree-cont">
-                    <input type="checkbox" name="agree" id="agree" title="You must agree to the terms and conditions and the privacy policy to create an account" required>
-                    <label for="agree">Agree to Terms and Conditions and Provacy Policy</label>
-                    <div class="error"></div>
-                </div>
-
-                <input type="submit" value="Register">
-            </fieldset>
-        </form>
-    </div>
-</body>
+                    <input type="submit" value="Register" />
+                </fieldset>
+            </form>
+        </div>
+    </body>
 </html>

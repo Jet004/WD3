@@ -1,7 +1,7 @@
 :root {
-    --main-bg: #d15353;
-    --header-bg: #3B7080;
-    --cont-bg: #D6CFCB;
+    --main-bg: #444;
+    --highlight-bg: #3581b8;
+    --cont-bg: rgba(190, 190, 190, 0.5);
 }
 
 * {
@@ -17,7 +17,7 @@ body {
 
 header {
     width: 100%;
-    background-color: var(--header-bg);
+    background-color: var(--highlight-bg);
     height: 100px;
     box-shadow: 0px 0px 15px black;
 }
@@ -28,9 +28,21 @@ header {
     justify-content: center;
 }
 
+.form-container::after {
+    background-image: url("../images/crypto-bg.jpg");
+    background-size: cover;
+    filter: blur(30px) contrast(0.7);
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: inline-block;
+    z-index: -1000;
+}
+
 form {
     background-color: var(--cont-bg);
-    box-shadow: 2px 2px 10px black;
+    box-shadow: 2px 2px 15px black;
 }
 
 form > fieldset {
@@ -64,10 +76,10 @@ form .form-item {
 }
 
 form .form-item > input {
-    padding: 5px;
-    font-size: 14px;
+    font-size: 16px;
+    padding: 10px 15px;
     box-sizing: border-box;
-    border-radius: 5px;
+    border-radius: 20px;
 }
 
 form .form-item:not(#agree-cont) {
@@ -81,21 +93,34 @@ form .form-item:not(#agree-cont) > label {
 }
 
 .form-item > input:required ~ label::after {
-    content: '*';
+    content: "*";
     color: red;
+}
+
+form input[type="submit"] {
+    background-color: var(--highlight-bg);
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 20px;
 }
 
 /* CSS for handling form validation & user input */
 
 .error {
     display: none;
+    font-size: 14px;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-left: 20px;
+    box-sizing: border-box;
 }
 
 form .form-item > input:focus {
     outline-style: none;
-    box-shadow: none;
-    border: 2px solid cornflowerblue;
-    border-radius: 5px;
+    box-shadow: 0px 0px 8px rgb(77, 120, 201);
+    border: 2px solid rgb(77, 120, 201);
+    border-radius: 20px;
 }
 
 form input:invalid:not(:placeholder-shown) {
@@ -110,10 +135,37 @@ form input:valid:not(:placeholder-shown):not([type="submit"]) {
     text-decoration: underline rgb(0, 175, 0);
 }
 
+/* Add input field icons */
+form .form-item input:not(#agree) {
+    background-color: #eee;
+    background-repeat: no-repeat;
+    background-position: right 10px bottom 50%;
+    background-size: 20px 20px;
+}
+
+#fname,
+#lname {
+    background: url("../images/user.png");
+}
+
+#email {
+    background: url("../images/email.png");
+}
+
+#password,
+#confirm-password {
+    background: url("../images/lock.png");
+}
+
+#public-key {
+    background: url("../images/key.png");
+}
+
 /* Mobile specific CSS */
 @media screen and (min-width: 300px) and (max-width: 440px) {
     .form-container {
-        margin: 20px 0px;
+        padding: 20px 0px;
+        box-sizing: border-box;
     }
 
     form {
@@ -131,7 +183,7 @@ form input:valid:not(:placeholder-shown):not([type="submit"]) {
     form .form-item:not(#agree-cont) > label {
         display: none;
     }
-    
+
     #help-popup iframe {
         width: 95vw;
         height: 250px;
@@ -146,14 +198,15 @@ form input:valid:not(:placeholder-shown):not([type="submit"]) {
     }
 
     .error {
-        width: 300px;
+        width: 350px;
     }
 }
 
 /* Tablet specific CSS */
 @media screen and (min-width: 441px) and (max-width: 750px) {
     .form-container {
-        margin: 30px 0px;
+        padding: 40px 0px;
+        box-sizing: border-box;
     }
 
     form {
@@ -181,7 +234,8 @@ form input:valid:not(:placeholder-shown):not([type="submit"]) {
 /* Desktop specific CSS */
 @media screen and (min-width: 751px) {
     .form-container {
-        margin: 60px 0px;
+        padding: 60px 0px;
+        box-sizing: border-box;
     }
 
     form {
@@ -189,7 +243,7 @@ form input:valid:not(:placeholder-shown):not([type="submit"]) {
         box-sizing: border-box;
         border-radius: 10px;
     }
-    
+
     form > fieldset {
         padding: 20px 40px;
         box-sizing: border-box;
@@ -202,7 +256,7 @@ form input:valid:not(:placeholder-shown):not([type="submit"]) {
     form > fieldset > legend {
         font-size: 22px;
     }
- 
+
     #help-popup iframe {
         width: 600px;
         height: 350px;
